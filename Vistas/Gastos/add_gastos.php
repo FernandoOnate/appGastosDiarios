@@ -4,7 +4,7 @@ $dt = new DateTime("now", $dtz);
 
 if (isset($_GET['cd'])) {
     if (empty($_GET['cd'])) {
-        echo ':)';
+        echo 'TAMBIÉN TENGO UNA VALIDACIÓN PARA ESO :)';
     }
 } else {
     echo 'Todo bien?';
@@ -40,13 +40,14 @@ if (isset($_GET['cd'])) {
                     ?>
                 </h3>
                 <p>
-                    <label for="gasto">Monto del gasto: $</label>
-                    <input type="number" step="any" id="gasto" name="gasto" placeholder="Números sin comas ni puntos">
+                    <label for="gasto">*Monto del gasto: $</label>
+                    <input type="number" step="any" id="gasto" name="gasto" placeholder="Números sin comas ni puntos" required>
                 </p>
                 <p>
-                    <label for="desc">Descripción o motivo del gasto:</label>
-                    <textarea name="descripcion" id="desc" placeholder="Detalle" cols="30" rows="1"></textarea>
+                    <label for="desc">*Descripción o motivo del gasto:</label>
+                    <textarea name="descripcion" id="desc" placeholder="Detalle" cols="30" rows="1" required></textarea>
                 </p>
+                <p>(*) campos requeridos</p>
                 <button type="submit" name="agregar">Agregar</button>
                 <button type="reset">Limpiar formulario</button>
             </fieldset>

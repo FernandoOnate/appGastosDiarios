@@ -1,9 +1,5 @@
 <?php
-require_once '../../Logic/conexion.php';
-$query = "CALL getEgresos()";
-$consulta = $enlace->query($query);
-$filas = $consulta->fetch_all(MYSQLI_ASSOC);
-mysqli_close($enlace);
+require_once '../../Logic/egresos/call-get_egresos.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,19 +28,27 @@ mysqli_close($enlace);
                 <th>Motivo</th>
                 <th>Creado en</th>
                 <th>Modificado en</th>
+                <th colspan="2">Acción</th>
             </tr>
-            <?php $v = 1;
-            foreach ($filas as $valor) : ?>
-                <tr>
-                    <td><?= $v ?></td>
-                    <td><?= $valor['monto'] ?></td>
-                    <td><?= $valor['detalle'] ?></td>
-                    <td><?= $valor['creado'] ?></td>
-                    <td><?= $valor['modificado'] ?></td>
-                </tr>
-            <?php $v++;
-            endforeach
-            ?>
+            <?php
+            if ($filas) :
+                $v = 1;
+                foreach ($filas as $valor) : ?>
+                    <tr>
+                        <td><?= $v ?></td>
+                        <td><?= $valor['monto'] ?></td>
+                        <td><?= $valor['detalle'] ?></td>
+                        <td><?= $valor['creado'] ?></td>
+                        <td><?= $valor['modificado'] ?></td>
+                        <td><a href="./edit_gasto.php?edit=<?= $valor['id_egreso'] ?>">Editar</a></td>
+                        <td><a href="./delete_gasto.php?delete=<?= $valor['id_egreso'] ?>">Eliminar</a></td>
+                    </tr>
+                <?php $v++;
+                endforeach;
+            else :
+                ?>
+                <td colspan="7">No se hallaron gastos</td>
+            <?php endif; ?>
         </table>
     </main>
     <?php include_once '../includes/footer.php' ?>

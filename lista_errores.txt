@@ -8,3 +8,4 @@
 1211 = la descripcion sobrepasa los 105 caracteres
 1300 = las variables de gasto y descripcion no existen
 1310 = las variables no pudieron ser agregadas a la bd
+2000 = esta vacio o no existe
