@@ -5,11 +5,6 @@ $dt = new DateTime("now", $dtz);
 if (isset($_GET['edit']) and !empty($_GET['edit'])) {
     $id = (int)$_GET['edit'];
     include_once '../../Logic/egresos/call_get_egreso_id.php';
-    // echo 'hola'.$id;
-    echo $filas['creado'].'<br>';
-    // echo $dt->format('c', strtotime($filas['creado']));
-    echo $dt->format('c');
-    die();
 } else {
     header('location:./ver_gastos.php?cd=2000');
     die();
@@ -48,7 +43,7 @@ if (isset($_GET['edit']) and !empty($_GET['edit'])) {
                 </p>
                 <p>
                     <label for="f_creado">Fecha de creado:</label>
-                    <input name="descripcion" id="f_creado" placeholder="Fecha de creado" value="<?php echo $filas['creado'] ?>" type="datetime-local">
+                    <input name="descripcion" id="f_creado" placeholder="Fecha de creado" value="<?php echo (new DateTime($filas['creado']))->format('Y-m-d\TH:i:s'); ?>" type="datetime-local">
                 </p>
                 <button type="submit" name="agregar">Modificar</button>
             </fieldset>
