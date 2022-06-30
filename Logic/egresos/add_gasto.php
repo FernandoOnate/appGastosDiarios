@@ -87,7 +87,6 @@ if (isset($_POST['agregar'])) {
 if ($gasto and $descripcion) {
     try {
         require_once './call_addEgreso.php';
-        echo 'agregado correctamente';
     } catch (\Throwable $th) {
         //throw $th;
         header('location:../../Vistas/Gastos/add_gastos.php?cd=1310');

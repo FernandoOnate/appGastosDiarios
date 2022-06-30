@@ -2,14 +2,13 @@
 $dtz = new DateTimeZone("America/Bogota");
 $dt = new DateTime("now", $dtz);
 
-if (isset($_GET['edit']) and !empty($_GET['edit'])) {
+if (isset($_GET['edit']) and !empty($_GET['edit']) and is_numeric($_GET['edit'])) {
     $id = (int)$_GET['edit'];
     include_once '../../Logic/egresos/call_get_egreso_id.php';
 } else {
     header('location:./ver_gastos.php?cd=2000');
     die();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,22 +29,31 @@ if (isset($_GET['edit']) and !empty($_GET['edit'])) {
         <h1>Por favor en esta sección debes modificar el dato que desees.</h1>
     </header>
     <main>
-        <form action="../../Logic/egresos/add_gasto.php" method="post">
+        <form action="../../Logic/egresos/update_gasto.php" method="post">
             <fieldset>
                 <legend>Editar gasto</legend>
+                <h3>Fecha y hora actuales:
+                    <?php
+                    echo $dt->format('F j, Y, g:i A')
+                    ?>
+                </h3>
                 <p>
-                    <label for="gasto">Monto del gasto: $</label>
+                    <label for="gasto">*Monto del gasto: $</label>
                     <input type="number" step="any" id="gasto" name="gasto" placeholder="Números sin comas ni puntos" value="<?= $filas['monto'] ?>">
                 </p>
                 <p>
-                    <label for="desc">Descripción o motivo del gasto:</label>
+                    <label for="desc">*Descripción o motivo del gasto:</label>
                     <input name="descripcion" id="desc" placeholder="Detalle" type="text" value="<?php echo $filas['detalle'] ?>">
                 </p>
                 <p>
-                    <label for="f_creado">Fecha de creado:</label>
-                    <input name="descripcion" id="f_creado" placeholder="Fecha de creado" value="<?php echo (new DateTime($filas['creado']))->format('Y-m-d\TH:i:s'); ?>" type="datetime-local">
+                    <label for="f_creado">*Fecha de creado:</label>
+                    <input name="fecha_creado" id="f_creado" placeholder="Fecha de creado" value="<?php echo (new DateTime($filas['creado']))->format('Y-m-d\TH:i:s'); ?>" type="datetime-local" max="<?php echo $dt->format('Y-m-d\TH:i:s') ?>" required>
+                    <input type="hidden" name="r" value="<?= $filas['id_egreso'] ?>">
                 </p>
-                <button type="submit" name="agregar">Modificar</button>
+                <p>
+                    (*) campos requeridos.
+                </p>
+                <button type="submit" name="modificar">Modificar</button>
             </fieldset>
         </form>
     </main>

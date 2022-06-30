@@ -40,7 +40,7 @@ require_once '../../Logic/egresos/call-get_egresos.php';
                         <td><?= $valor['detalle'] ?></td>
                         <td><?= $valor['creado'] ?></td>
                         <td><?= $valor['modificado'] ?></td>
-                        <td><a href="./edit_gasto.php?edit=<?= $valor['id_egreso'] ?>">Editar</a></td>
+                        <td><a href="./edit_gasto.php?edit=<?= htmlspecialchars( urlencode($valor['id_egreso']))  ?>">Editar</a></td>
                         <td><a href="./delete_gasto.php?delete=<?= $valor['id_egreso'] ?>">Eliminar</a></td>
                     </tr>
                 <?php $v++;
