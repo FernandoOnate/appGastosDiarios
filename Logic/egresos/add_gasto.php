@@ -59,7 +59,7 @@ if (isset($_POST['agregar'])) {
             if (!is_string($_POST['descripcion'])) {
                 // critico
                 // echo 'El campo descripcion no es un string';
-                header('location:../../Vistas/Gastos/add_gastos.php?cd=1210');
+                header('location:../../Vistas/Gastos/add_gastos.php?cd=1201');
                 die();
             } else {
                 if (strlen($_POST['descripcion']) >= 105) {
@@ -74,7 +74,7 @@ if (isset($_POST['agregar'])) {
     } else {
         // critico
         // echo 'el campo descripcion no existe';
-        header('location:../../Vistas/Gastos/add_gastos.php?cd=1211');
+        header('location:../../Vistas/Gastos/add_gastos.php?cd=1212');
         die();
     }
 } else {
@@ -87,14 +87,18 @@ if (isset($_POST['agregar'])) {
 if ($gasto and $descripcion) {
     try {
         require_once './call_addEgreso.php';
+        if ($consulta_add) {
+            // echo 'agregado correctamente';
+            header('location:../../Vistas/Gastos/add_gastos.php?cd=1311');
+        }
     } catch (\Throwable $th) {
         //throw $th;
-        header('location:../../Vistas/Gastos/add_gastos.php?cd=1310');
+        header('location:../../Vistas/Gastos/add_gastos.php?cd=1300');
         die();
         // echo 'no agregado correctamente ' . $enlace->errno . ' ' . $enlace->error;
     }
 } else {
     // echo 'Las variables son null';
-    header('location:../../Vistas/Gastos/add_gastos.php?cd=1300');
+    header('location:../../Vistas/Gastos/add_gastos.php?cd=1301');
     die();
 }

@@ -6,11 +6,6 @@ try {
     $stmt = $enlace->prepare($query); //bueno
     $stmt->bind_param("iisds", $id_fila, $id_user, $descripcion, $gasto, $fecha); //bueno
     $result = $stmt->execute(); //bueno
-    if ($result) {
-        echo 'Editado correctamente';
-    } else {
-        echo 'No se pudo editar';
-    }
     mysqli_close($enlace);
     $stmt->close(); //bueno
 } catch (\Throwable $th) {
