@@ -2,6 +2,8 @@ Logic/conexion.php
 Logic/egresos/call_addEgreso.php
 Logic/egresos/call_get_egreso_id.php
 Logic/egresos/call_update_egreso.php
+Logic/egresos/call-get_egresos.php
+Logic/egresos/update_gasto.php
 Logic/egresos/add_gasto.php
 *.txt
 

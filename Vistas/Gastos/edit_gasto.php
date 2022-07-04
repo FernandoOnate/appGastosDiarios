@@ -33,7 +33,7 @@ if (isset($_GET['edit']) and !empty($_GET['edit']) and is_numeric($_GET['edit'])
 
     // include_once '../../Logic/egresos/call_get_egreso_id.php';
 } else {
-    header('location:./edit_gasto.php?cd=urlerr&edit=00');
+    header('location:./edit_gasto.php?cd=0033&edit=00');
     die();
 }
 ?>
