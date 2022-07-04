@@ -1,3 +1,7 @@
 Logic/conexion.php
-lista_errores.txt
-.gitignore
+Logic/egresos/call_addEgreso.php
+Logic/egresos/call_get_egreso_id.php
+Logic/egresos/call_update_egreso.php
+Logic/egresos/add_gasto.php
+*.txt
+
