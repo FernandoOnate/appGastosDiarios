@@ -2,24 +2,12 @@
 $dtz = new DateTimeZone("America/Bogota");
 $dt = new DateTime("now", $dtz);
 
-if ((isset($_GET['cd']) and !empty($_GET['cd']) and ctype_alpha($_GET['cd'])) and (isset($_GET['edit']) and !empty($_GET['edit']) and is_numeric($_GET['edit']))) {
-
-    if((int)$_GET['edit']==0){
-        if($_GET['cd'] == 'urlerr'){
-            echo 'La variable Edit por url no es válida.';
-        }else{
-            echo 'La variable cd no es válida, pero la edit sí.';
-        }
-    }else{
-        if((int)$_GET['edit'] !== 0){
-            if($_GET['cd'] == 'urlerr'){
-                echo 'La variable edit por url no es válida, pero cd sí.';
-            }
-        }
-    }
-}
+include_once '../../Logic/egresos/url_comp.php';
 
 if (isset($_GET['edit']) and !empty($_GET['edit']) and is_numeric($_GET['edit'])) {
+    if(isset($_GET['r'])and !empty($_GET['r']) and !ctype_alnum($_GET['r'])){
+
+    }
 
     if (empty($_SESSION['id_edit']) or !isset($_SESSION['id_edit']) or !is_numeric($_SESSION['id_edit'])) {
 
@@ -29,8 +17,9 @@ if (isset($_GET['edit']) and !empty($_GET['edit']) and is_numeric($_GET['edit'])
         if ($_SESSION['id_edit'] == 0) {
             echo gettype($_SESSION['id_edit']) . " " . $_SESSION['id_edit'];
         }
+    }else{
+        $_SESSION['id_edit'] = $_SESSION['id_edit'];
     }
-
     // include_once '../../Logic/egresos/call_get_egreso_id.php';
 } else {
     header('location:./edit_gasto.php?cd=0033&edit=00');
